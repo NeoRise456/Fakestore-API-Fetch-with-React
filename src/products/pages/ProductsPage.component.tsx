@@ -1,7 +1,8 @@
 import {useState, useEffect} from "react";
 import {Product} from "@/products/model/product.entity.ts";
 import {ProductsApiService} from "@/products/services/products-api.service.ts";
-import {ProductItem} from "@/products/components/ProductItem.component.tsx";
+import {FakestoreToolbar} from "@/public/components/FakestoreToolbar.component.tsx";
+import {ProductList} from "@/products/components/ProductList.component.tsx";
 
 export function ProductsPage () {
     const [products,setProducts] = useState<Product[]>([]);
@@ -20,17 +21,10 @@ export function ProductsPage () {
 
     return (
         <>
-            <div>
-                <h1>Products Page</h1>
-                <div>
-                    {products.map(
-                        (product: Product) => (
-                            <li key={product.id}>{product.title}</li>
-                        )
-                    )}
-                </div>
-                <div>
-                    <ProductItem/>
+            <div className="flex flex-col">
+                <FakestoreToolbar/>
+                <div className="p-8">
+                    <ProductList products={products}/>
                 </div>
             </div>
         </>
